@@ -1,1 +1,3 @@
 # ShopMaker
+
+ENV = BAGASGANTENG
