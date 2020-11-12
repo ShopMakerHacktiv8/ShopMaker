@@ -14,10 +14,38 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Toko.init({
-    nama: DataTypes.STRING,
-    logo_path: DataTypes.STRING,
-    alamat: DataTypes.STRING,
-    deskripsi: DataTypes.STRING
+    nama: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'name cannot be empty!'},
+        notEmpty: { args: true, msg: 'name cannot be empty!'}
+      }
+    },
+    logo_path: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'logo path cannot be empty!'},
+        notEmpty: { args: true, msg: 'logo path cannot be empty!'}
+      }
+    },
+    alamat: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'address cannot be empty!'},
+        notEmpty: { args: true, msg: 'address cannot be empty!'}
+      }
+    },
+    deskripsi: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'description cannot be empty!'},
+        notEmpty: { args: true, msg: 'description cannot be empty!'}
+      }
+    }
   }, {
     sequelize,
     modelName: 'Toko',
