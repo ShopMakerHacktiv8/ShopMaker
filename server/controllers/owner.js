@@ -29,10 +29,10 @@ class Controller {
     }
 
     static register (req,res,next) {
-        const {id, email, password, nama, image_url} = req.body
+        const {email, nama, image_url} = req.body
         Owner.create(req.body)
         .then(data => {
-            res.status(201).json({id, email, password, nama, image_url})
+            res.status(201).json({id : data.id, email, nama, image_url})
         })
         .catch(err => {
             next(err)
