@@ -11,11 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
     }
   };
   Category.init({
     shop_id: DataTypes.INTEGER,
-    name: DataTypes.STRING
+    name: {
+      type : DataTypes.STRING,
+      allowNull : false,
+      validate : { 
+        notEmpty : {
+        args : true,
+        msg : "Name cannot be empty!"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Category',

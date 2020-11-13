@@ -21,9 +21,9 @@
     "supertest": "^6.0.1"
   },
   "scripts": {
-    "test": "jest --detectOpenHandles --forceExit --runInBand --verbose",
+    "test": "jest --detectOpenHandles --forceExit --runInBand --verbose --collectCoverage",
     "dev": "npx nodemon bin/http",
-    "start": "node bin/http"
+    "start": "nodemon bin/http"
   },
   "keywords": [],
   "author": "",
