@@ -15,11 +15,48 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Customer.init({
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    nama: DataTypes.STRING,
-    image_url: DataTypes.STRING,
-    alamat: DataTypes.STRING
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        isEmail: { args: true, msg: 'invalid email or password!'},
+        notNull: { args: true, msg: 'password or email cannot be empty!'},
+        notEmpty: { args: true, msg: 'password or email cannot be empty!'}
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'password or email cannot be empty!'},
+        notEmpty: { args: true, msg: 'password or email cannot be empty!'}
+      }
+    },
+    nama: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'name cannot be empty!'},
+        notEmpty: { args: true, msg: 'name cannot be empty!'}
+      }
+    },
+    image_url: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'image_url cannot be empty!'},
+        notEmpty: { args: true, msg: 'image_url cannot be empty!'}
+      }
+    },
+    alamat: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'address cannot be empty!'},
+        notEmpty: { args: true, msg: 'address cannot be empty!'}
+      }
+    }
   }, {
     sequelize,
     modelName: 'Customer',
