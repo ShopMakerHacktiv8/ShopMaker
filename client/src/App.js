@@ -1,25 +1,36 @@
-import './App.css';
 import React from 'react';
 // import ReactDOM from 'react-dom';
 // import Navbar from 'react-bootstrap/Navbar'
-import { Navbar, Nav } from 'react-bootstrap'
+import { Route, BrowserRouter as Router} from 'react-router-dom'
+import NavbarHome from './components/NavbarHome'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Home from './pages/Home'
+import Product from './pages/Product'
+
 
 function App() {
   return (
     <>
-    <Navbar bg="light" expand="lg">
-  <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Product</Nav.Link>
-      <Nav.Link href="#link">Pembelian</Nav.Link>
-      <Nav.Link href="#link">Customer</Nav.Link>
-      <Nav.Link href="#link">Logout</Nav.Link>
-    </Nav>
-  </Navbar.Collapse>
-</Navbar>
+      <Router>
+        <NavbarHome></NavbarHome>
+
+        <Route path='/login'>
+          <Login></Login>
+        </Route>
+
+        <Route path='/register'>
+          <Register></Register>
+        </Route>
+
+        <Route exact path='/'>
+          <Home></Home>
+        </Route>
+
+        <Route path='/product'>
+          <Product></Product>
+        </Route>
+      </Router>
 </>
   );
 }
