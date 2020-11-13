@@ -4,13 +4,16 @@ const errorHandler = (err, req, res, next) => {
   let errors = []
   let statusCode = 500
 
+  // console.log(err)
+
   switch (err.name) {
-    case 'AuthorizationFailed':
-      errors.push('authorization failed')
-      statusCode = 403
-      break
+    // case 'AuthorizationFailed':
+    //   errors.push('authorization failed')
+    //   statusCode = 403
+    //   break
     case 'JsonWebTokenError':
     case 'AuthenticationFailed':
+      console.log('ASHUUUUPPP')
       errors.push('authentication failed')
       statusCode = 401
       break
