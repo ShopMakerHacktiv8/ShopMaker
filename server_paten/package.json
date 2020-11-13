@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "aws-sdk": "^2.791.0",
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
@@ -21,7 +22,7 @@
     "supertest": "^6.0.1"
   },
   "scripts": {
-    "test": "jest --detectOpenHandles --forceExit --runInBand --verbose",
+    "test": "jest --detectOpenHandles --forceExit --runInBand --verbose --collectCoverage",
     "dev": "npx nodemon bin/http",
     "start": "node bin/http"
   },
