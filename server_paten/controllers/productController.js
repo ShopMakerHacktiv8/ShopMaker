@@ -25,8 +25,9 @@ class ProductController {
 
   static async getProduct(req, res, next) {
     try {
-      const { category_id } = req.query
-      const { shop_id } = req.body
+      console.log(req.body, '<=== req.body')
+      const { shop_id, category_id } = req.query
+      // const { shop_id } = req.body
       let products = []
       if (category_id) {
         products = await Product.findAll({
@@ -65,6 +66,7 @@ class ProductController {
       });
       res.status(200).json(products)
     } catch (err) {
+      console.log(err, '<=== err get product')
       next(err)
     }
   }

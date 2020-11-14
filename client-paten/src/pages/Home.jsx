@@ -1,36 +1,47 @@
 import React from 'react';
-import { Card, CardDeck } from 'react-bootstrap'
+import { Button, Card, CardDeck, Container, Row, Col } from 'react-bootstrap'
+import { Link, Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
+import AddProduct from './AddProduct';
+import Product from './Product'
+
 
 function Home() {
+  let match = useRouteMatch()
+  console.log(match, '<=== match useroute');
+
   return (
-    <>
-    <CardDeck>
-      <Card>
-        <Card.Body>
-          <Card.Title>Incoming Order</Card.Title>
-          <Card.Text>
-            Incoming Order Incoming Order Incoming Order Incoming Order Incoming Order
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Card>
-        <Card.Body>
-          <Card.Title>Ready to Ship</Card.Title>
-          <Card.Text>
-            Ready to Ship Ready to Ship Ready to Ship Ready to Ship Ready to Ship Ready to Ship
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Card>
-        <Card.Body>
-          <Card.Title>Sedang dikirim</Card.Title>
-          <Card.Text>
-            Sedang dikirim Sedang dikirim Sedang dikirim Sedang dikirim Sedang dikirim
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    </CardDeck>
-</>
+    <Container fluid>
+      <Row>
+        <Col sm='3' className="p-3">
+          <Button variant="secondary" as={Link} to={`${match.url}/products`} >
+
+            <h4>
+              <div className="d-flex justify-content-center"><i className="fas fa-box"></i>Products</div>
+            </h4></Button>
+        </Col>
+
+        <Col sm='9'>
+          <Switch>
+            <Route exact path={`${match.url}/`}>
+              <Redirect to={`${match.url}/products`}>
+
+              </Redirect>
+            </Route>
+            <Route path={`${match.url}/add-product`}>
+              <AddProduct>
+
+              </AddProduct>
+            </Route >
+            <Route path={`${match.url}/products`}>
+              <Product>
+
+              </Product>
+            </Route >
+
+          </Switch>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
