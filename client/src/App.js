@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 // import ReactDOM from 'react-dom';
 // import Navbar from 'react-bootstrap/Navbar'
@@ -33,6 +34,12 @@ function App() {
       </Router>
 </>
   );
+=======
+import React from 'react'
+
+function App() {
+  return <h1>App</h1>
+>>>>>>> main
 }
 
-export default App;
+export default App

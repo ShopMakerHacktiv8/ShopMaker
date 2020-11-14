@@ -1,0 +1,15 @@
+npx sequelize init
+npx sequelize model:generate --name Shop --attributes email:string,password:string,name:string,icon_url:text,address:string,phone:integer,description:text
+npx sequelize model:generate --name Category --attributes shop_id:integer,name:string
+npx sequelize model:generate --name Product --attributes shop_id:integer,category_id:integer,name:string,image_url:text,price:integer,stock:integer,description:text
+npx sequelize model:generate --name Cart --attributes product_id:integer,quantity:integer,status:boolean,user_name:string,user_address:string,user_phone:integer 
+
+npx sequelize db:create
+npx sequelize db:migrate:undo:all
+npx sequelize db:migrate
+
+npx sequelize db:migrate:undo:all --env="test"
+npx sequelize db:migrate --env="test"
+
+
+
