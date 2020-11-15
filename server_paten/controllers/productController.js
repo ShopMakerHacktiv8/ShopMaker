@@ -1,4 +1,5 @@
 const { Product, Category } = require('../models')
+const midtransClient = require('midtrans-client');
 
 class ProductController {
   static async createProduct(req, res, next) {
@@ -17,7 +18,7 @@ class ProductController {
         stock: newProduct.stock,
         description: newProduct.description
       });
-            
+
     } catch (err) {
       next(err)
     }
@@ -73,9 +74,9 @@ class ProductController {
     try {
       const { id } = req.params
       const product = await Product.findByPk(id)
-      if (!product) throw { msg: 'product not found', statusCode: 404}
+      if (!product) throw { msg: 'product not found', statusCode: 404 }
 
-      res.status(200).json(product)      
+      res.status(200).json(product)
     } catch (err) {
       next(err)
     }
@@ -85,7 +86,7 @@ class ProductController {
     try {
       const { id } = req.params
       const product = await Product.findByPk(id)
-      if (!product) throw { msg: 'product not found', statusCode: 404}
+      if (!product) throw { msg: 'product not found', statusCode: 404 }
 
       product.destroy()
       res.status(200).json({
@@ -101,7 +102,7 @@ class ProductController {
       const { id } = req.params
       const { name, price, stock, description, category_id, file } = req.body
       let product = await Product.findByPk(id)
-      if (!product) throw { msg: 'product not found', statusCode: 404}
+      if (!product) throw { msg: 'product not found', statusCode: 404 }
 
       product.name = name
       product.image_url = file
@@ -123,6 +124,44 @@ class ProductController {
       })
 
     } catch (err) {
+      next(err)
+    }
+  }
+
+  static async buyProduct(req, res, next) {
+    try {
+      const {name, phone, address, city, postal_code, total} = req.body
+      // Create Snap API instance
+      let snap = new midtransClient.Snap({
+        // Set to true if you want Production Environment (accept real transaction).
+        isProduction: false,
+        serverKey: 'SB-Mid-server-2ORv2ckTLMc46xFlfdi9liX5'
+      })
+
+      let parameter = {
+        "transaction_details": {
+          "order_id":  "order-csb-" + Math.round(new Date().getTime() / 1000),
+          "gross_amount": total
+        },
+        "credit_card": {
+          "secure": true
+        },
+        "customer_details": {
+          "first_name": name,
+          "phone": phone,
+          "shipping_address": {
+            "address": address,
+            "city": city,
+            "postal_code": postal_code
+          }
+        }
+      };
+
+    const transaction = await snap.createTransaction(parameter)
+          let transactionToken = transaction.token;
+          res.status(201).json({token : transactionToken})
+    } catch (err) {
+      console.log(err, "<<<<<<<<ERRORRR MIDTRANS!!!!")
       next(err)
     }
   }

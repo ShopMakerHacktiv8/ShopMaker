@@ -7,6 +7,7 @@ import Home from './pages/Home'
 // import Product from './pages/Product'
 import LandingPage from './pages/LandingPage'
 import PrivateRoute from './components/PrivateRoute'
+import Payment from './pages/Payment'
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
         <NavbarHome></NavbarHome>
         <Switch>
           <Route exact path='/' component={LandingPage} />
+
+          <Route path='/payment' component={Payment} />
 
           <Route path='/login' component={Login} />
 

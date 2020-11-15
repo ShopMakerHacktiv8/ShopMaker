@@ -36,6 +36,10 @@ function NavbarHome() {
                 <Nav.Link as={Link} to='/product'>
                   Product
                 </Nav.Link>
+
+                <Nav.Link as={Link} to='/payment'>
+                  Payment
+                </Nav.Link>
                 <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
               </>
             )}
