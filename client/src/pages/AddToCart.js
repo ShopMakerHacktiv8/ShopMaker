@@ -5,8 +5,8 @@ function Home() {
   return (
     <Container fluid>
       <Row>
-        <Col xs="6" md="4">
-          <Card className="shadow p-4 mt-4">
+        <Col className="md-6">
+          <Card className="shadow p-4 mt-4" style={{ width: '15rem' }}>
             <Row className="col-12 justify-content-center">
               <Image src={'./assets/macbook.jpg'}></Image>
             </Row>
@@ -21,8 +21,8 @@ function Home() {
             </Row>
           </Card>
         </Col>
-        <Col xs="6" md="4">
-          <Card className="shadow p-4 mt-4">
+        <Col className="md-6">
+          <Card className="shadow p-4 mt-4" style={{ width: '15rem' }}>
             <Row className="col-12 justify-content-center">
               <Image src={'./assets/macbook.jpg'}></Image>
             </Row>
@@ -37,8 +37,8 @@ function Home() {
             </Row>
           </Card>
         </Col>
-        <Col xs="6" md="4">
-          <Card className="shadow p-4 mt-4">
+        <Col className="md-6">
+          <Card className="shadow p-4 mt-4" style={{ width: '15rem' }}>
             <Row className="col-12 justify-content-center">
               <Image src={'./assets/macbook.jpg'}></Image>
             </Row>
@@ -53,8 +53,8 @@ function Home() {
             </Row>
           </Card>
         </Col>
-        <Col xs="6" md="4">
-          <Card className="shadow p-4 mt-4">
+        <Col className="md-6">
+          <Card className="shadow p-4 mt-4" style={{ width: '15rem' }}>
             <Row className="col-12 justify-content-center">
               <Image src={'./assets/macbook.jpg'}></Image>
             </Row>
@@ -65,7 +65,12 @@ function Home() {
               <h6>Rp 20.000.000</h6>
             </Row>
             <Row className="col-12 justify-content-center">
-              <Button className="btn btn-sm btn-outline-info">View</Button>
+              <Button
+                className="btn btn-sm btn-outline-info"
+                href="/productCustomer"
+              >
+                View
+              </Button>
             </Row>
           </Card>
         </Col>
