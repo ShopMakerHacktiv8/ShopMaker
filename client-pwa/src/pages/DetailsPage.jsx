@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Row, Col, Container, Button, Image } from 'react-bootstrap'
+import { Row, Col, Container, Button, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { getDetailsProduct } from '../store/actions/productActions'
+import axios from '../config/axios'
 
 const DetailsPage = () => {
+  const [token, setToken] = useState('')
   const { productId } = useParams()
   const dispatch = useDispatch()
   const history = useHistory()
+  const { shopId } = useParams()
 
   const { user } = useSelector((state) => state.userDetailsReducer)
 
@@ -35,6 +38,35 @@ const DetailsPage = () => {
       quantity: cart.quantity - 1,
       total: (cart.quantity - 1) * product.price,
     })
+  }
+
+  const handleBuy = () => {
+    if (user) {
+      pay()
+    } else {
+      history.push(`/${shopId}/payment`)
+    }
+  }
+
+  const pay = () => {
+    axios({
+      method: 'post',
+      url: `/clients/${shopId}/buy`,
+      data: {
+        name: user.name,
+        phone: user.phone,
+        address: user.address,
+        total: cart.total,
+      },
+    })
+      .then((data) => {
+        setToken(data.data.token)
+        console.log(data.data.token, '<<<<<<<<<<<<<token')
+        window.snap.pay(token)
+      })
+      .catch((err) => {
+        return err
+      })
   }
 
   return (
@@ -90,6 +122,7 @@ const DetailsPage = () => {
                 variant='primary'
                 className='w-100'
                 disabled={!product.stock || !cart.quantity}
+                onClick={handleBuy}
               >
                 Buy
               </Button>

@@ -13,7 +13,7 @@ function NavbarHome() {
   )
 
   useEffect(() => {
-    if (shopId) {
+    if (shopId && shopId !== 'payment') {
       dispatch(getDetailsShop(shopId))
     }
   }, [])
