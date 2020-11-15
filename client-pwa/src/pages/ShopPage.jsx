@@ -11,7 +11,6 @@ const ShopPage = () => {
   const { products, loading, error } = useSelector(
     (state) => state.productListReducer
   )
-  console.log(shopId, '<<ini')
 
   useEffect(() => {
     dispatch(listProduct(shopId))
@@ -19,10 +18,11 @@ const ShopPage = () => {
 
   return (
     <Container fluid>
-      <Row>
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
+      <Row className='mt-3'>
+        {products &&
+          products.map((product) => (
+            <ItemCard key={product.id} item={product} />
+          ))}
       </Row>
     </Container>
   )
