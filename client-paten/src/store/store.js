@@ -2,13 +2,14 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { shopLoginReducer, shopRegisterReducer } from './reducers/shopReducers'
-import { productCreateReducer, productListReducer } from './reducers/productReducers'
+import { productCreateReducer, productListReducer, productDeleteReducer } from './reducers/productReducers'
 
 const reducer = combineReducers({
   shopLoginReducer,
   shopRegisterReducer,
   productCreateReducer,
-  productListReducer
+  productListReducer,
+  productDeleteReducer
 })
 
 const shopInfoFromStorage = localStorage.getItem('shopInfo')

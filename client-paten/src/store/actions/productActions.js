@@ -5,7 +5,10 @@ import {
   PRODUCT_CREATE_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
-  PRODUCT_LIST_FAIL
+  PRODUCT_LIST_FAIL,
+  PRODUCT_DELETE_REQUEST,
+  PRODUCT_DELETE_SUCCESS,
+  PRODUCT_DELETE_FAIL
 } from '../constants/productConstants'
 
 export const createProduct = (formData) => async (dispatch, getState) => {
@@ -58,13 +61,7 @@ export const listProduct = () => async (dispatch, getState) => {
         'Content-Type': 'application/json'
       }
     })
-    // const { data } = await axios({
-    //   method: 'get',
-    //   url: '/products',
-    //   data: {
-    //     shop_id: shopInfo.id
-    //   }
-    // })
+
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data
@@ -81,5 +78,41 @@ export const listProduct = () => async (dispatch, getState) => {
         ? error.response.data.errors
         : ['error unknown'],
     })
+  }
+}
+
+export const deleteProduct = () => async (dispatch, getState) => {
+  console.log('masuk delete product di action')
+  try {
+    dispatch({
+      type: PRODUCT_DELETE_REQUEST
+    })
+    
+    const { shopLoginReducer } = getState()
+    const { shopInfo } = shopLoginReducer
+    console.log(shopInfo.id, '<=== shop info id di delete action')
+    const { data } = await axios.delete('/products', {
+      params: { shop_id: shopInfo.id}
+    }, {
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    })
+
+    dispatch({
+      type: PRODUCT_DELETE_SUCCESS,
+      payload: data
+    })
+
+    console.log(data, '<=== delete product di action')
+  } catch (error) {
+    console.log(error, '<=== error delete product')
+    dispatch({
+      type: PRODUCT_DELETE_FAIL,
+      payload: 
+        error.response && error.response.data.errors
+        ? error.response.data.errors
+        : ['error unknown'],
+    })   
   }
 }
