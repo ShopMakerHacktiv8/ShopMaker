@@ -1,5 +1,6 @@
 const { comparePassword } = require('../helpers/bcrypt')
 const { generateToken } = require('../helpers/jwt')
+const generateManifest = require('../helpers/manifest')
 const { Shop } = require('../models')
 
 class ShopController {

@@ -1,0 +1,2 @@
+export const USER_DETAILS_ADD = 'USER_ADD'
+export const USER_DETAILS_RESET = 'USER_RESET'
