@@ -5,8 +5,8 @@ function Home() {
   return (
     <Container fluid>
       <Row>
-        <Col xs="6" md="4">
-          <Card className="shadow p-4 mt-4">
+        <Col className="md-6">
+          <Card className="shadow p-4 mt-4" style={{ width: '15rem' }}>
             <Row className="col-12 justify-content-center">
               <Image src={"./assets/macbook.jpg"}></Image>
             </Row>
@@ -21,24 +21,8 @@ function Home() {
             </Row>
           </Card>
         </Col>     
-        <Col xs="6" md="4">
-          <Card className="shadow p-4 mt-4" >
-            <Row className="col-12 justify-content-center">
-              <Image src={"./assets/macbook.jpg"}></Image>
-            </Row>
-            <Row className="col-12 justify-content-center">
-              <h5>Macbook</h5>        
-            </Row>
-            <Row className="col-12 justify-content-center">
-              <h6>Rp 20.000.000</h6>
-            </Row>
-            <Row className="col-12 justify-content-center">
-              <Button class="btn btn-sm btn-outline-info">View</Button>
-            </Row>
-          </Card>
-        </Col>  
-        <Col xs="6" md="4">
-          <Card className="shadow p-4 mt-4">
+        <Col className="md-6">
+          <Card className="shadow p-4 mt-4" style={{ width: '15rem' }}>
             <Row className="col-12 justify-content-center">
               <Image src={"./assets/macbook.jpg"}></Image>
             </Row>
@@ -53,8 +37,8 @@ function Home() {
             </Row>
           </Card>
         </Col>     
-        <Col xs="6" md="4">
-          <Card className="shadow p-4 mt-4" >
+        <Col className="md-6">
+          <Card className="shadow p-4 mt-4" style={{ width: '15rem' }}>
             <Row className="col-12 justify-content-center">
               <Image src={"./assets/macbook.jpg"}></Image>
             </Row>
@@ -68,7 +52,24 @@ function Home() {
               <Button class="btn btn-sm btn-outline-info">View</Button>
             </Row>
           </Card>
-        </Col>  
+        </Col>     
+        <Col className="md-6">
+          <Card className="shadow p-4 mt-4" style={{ width: '15rem' }}>
+            <Row className="col-12 justify-content-center">
+              <Image src={"./assets/macbook.jpg"}></Image>
+            </Row>
+            <Row className="col-12 justify-content-center">
+              <h5>Macbook</h5>        
+            </Row>
+            <Row className="col-12 justify-content-center">
+              <h6>Rp 20.000.000</h6>
+            </Row>
+            <Row className="col-12 justify-content-center">
+              <Button class="btn btn-sm btn-outline-info" href="/productCustomer">View</Button>
+            </Row>
+          </Card>
+        </Col>     
+        
       </Row>
     </Container>
    
