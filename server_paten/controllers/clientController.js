@@ -13,7 +13,6 @@ class ClientController {
       const manifest = generateManifest(shop.id, shop.name, shop.icon_url)
       res.json(manifest)
     } catch (err) {
-      console.log(err)
       next(err)
     }
   }

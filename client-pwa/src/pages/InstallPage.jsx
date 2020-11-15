@@ -3,7 +3,6 @@ import PWAPrompt from 'react-ios-pwa-prompt'
 
 const InstallPage = () => {
   const [deferredPrompt, setD] = useState(null)
-  alert('masuk install')
 
   const installApp = () => {
     deferredPrompt.prompt()

@@ -8,18 +8,26 @@ import {
 
 import { shopDetailsReducer } from './reducers/shopReducers'
 
+import { userDetailsReducer } from './reducers/userReducers'
+
 const reducer = combineReducers({
   productListReducer,
   productDetailsReducer,
   shopDetailsReducer,
+  userDetailsReducer,
 })
 
 const shopFromStorage = localStorage.getItem('shop')
   ? JSON.parse(localStorage.getItem('shop'))
   : {}
 
+const userFromStorage = localStorage.getItem('user')
+  ? JSON.parse(localStorage.getItem('user'))
+  : null
+
 const initialState = {
   shopDetailsReducer: { shop: shopFromStorage },
+  userDetailsReducer: { user: userFromStorage },
 }
 
 const middleware = [thunk]
