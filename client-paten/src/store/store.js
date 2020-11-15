@@ -2,14 +2,19 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { shopLoginReducer, shopRegisterReducer } from './reducers/shopReducers'
-import { productCreateReducer, productListReducer, productDeleteReducer } from './reducers/productReducers'
+import { productCreateReducer, productListReducer, productDeleteReducer, productEditReducer } from './reducers/productReducers'
+import { categoryCreateReducer, categoryListReducer, categoryDeleteReducer } from './reducers/categoryReducer'
 
 const reducer = combineReducers({
   shopLoginReducer,
   shopRegisterReducer,
   productCreateReducer,
   productListReducer,
-  productDeleteReducer
+  productDeleteReducer,
+  productEditReducer,
+  categoryCreateReducer,
+  categoryListReducer,
+  categoryDeleteReducer
 })
 
 const shopInfoFromStorage = localStorage.getItem('shopInfo')

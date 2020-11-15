@@ -8,7 +8,10 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_SUCCESS,
-  PRODUCT_DELETE_FAIL
+  PRODUCT_DELETE_FAIL,
+  PRODUCT_EDIT_REQUEST,
+  PRODUCT_EDIT_SUCCESS,
+  PRODUCT_EDIT_FAIL
 } from '../constants/productConstants'
 
 export const createProduct = (formData) => async (dispatch, getState) => {
@@ -37,6 +40,38 @@ export const createProduct = (formData) => async (dispatch, getState) => {
     console.log(error, '<=== error add product')
     dispatch({
       type: PRODUCT_CREATE_FAIL,
+      payload: 
+        error.response && error.response.data.errors
+        ? error.response.data.errors
+        : ['error unknown'],
+    })
+  }
+}
+
+export const editProduct = (formData) => async (dispatch, getState) => {
+  console.log('masuk edit product di action')
+  try {
+    dispatch({
+      type: PRODUCT_EDIT_REQUEST
+    })
+    const { shopLoginReducer } = getState()
+    const { shopInfo } = shopLoginReducer
+    const { data } = await axios.put('/products', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'access_token': shopInfo.access_token
+      }
+    })
+
+    dispatch({
+      type: PRODUCT_EDIT_SUCCESS,
+      payload: data,
+    })
+
+    console.log(data, '<=== data edit product di actions')
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_EDIT_FAIL,
       payload: 
         error.response && error.response.data.errors
         ? error.response.data.errors
@@ -81,7 +116,7 @@ export const listProduct = () => async (dispatch, getState) => {
   }
 }
 
-export const deleteProduct = () => async (dispatch, getState) => {
+export const deleteProduct = (productId) => async (dispatch, getState) => {
   console.log('masuk delete product di action')
   try {
     dispatch({
@@ -91,18 +126,18 @@ export const deleteProduct = () => async (dispatch, getState) => {
     const { shopLoginReducer } = getState()
     const { shopInfo } = shopLoginReducer
     console.log(shopInfo.id, '<=== shop info id di delete action')
-    const { data } = await axios.delete('/products', {
-      params: { shop_id: shopInfo.id}
-    }, {
+    const { data } = await axios.delete(`/products/${productId}`, {
       headers: {
-        'Content-Type' : 'application/json'
+        'Content-Type' : 'application/json',
+        'access_token': shopInfo.access_token
       }
     })
 
     dispatch({
-      type: PRODUCT_DELETE_SUCCESS,
-      payload: data
+      type: PRODUCT_DELETE_SUCCESS
     })
+
+    dispatch(listProduct())
 
     console.log(data, '<=== delete product di action')
   } catch (error) {
