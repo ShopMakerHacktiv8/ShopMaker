@@ -194,8 +194,7 @@ describe("Create Product / Error Case", () => {
 describe("Read Products / Success Case", () => {
   test("Should send array", (done) => {
     request(app)
-      .get("/products")
-      .send({ shop_id })
+      .get(`/products?shop_id=${shop_id}`)
       .end((err, res) => {
         if (err) throw err;
         expect(res.status).toBe(200);
