@@ -4,6 +4,7 @@ import './index.css'
 import App from './App'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import reportWebVitals from './reportWebVitals'
+import './bootstrap.min.css'
 
 ReactDOM.render(
   <React.StrictMode>
