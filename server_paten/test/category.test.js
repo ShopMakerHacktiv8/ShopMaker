@@ -157,8 +157,7 @@ describe('Create -- Error Case', () => {
 describe('Read -- Success Case', () => {
   test('send correct token', (done) => {
     request(app)
-      .get('/categories')
-      .send({ shop_id })
+      .get(`/categories?shop_id=${shop_id}`)
       .end(function (err, res) {
         if (err) throw err
         else {

@@ -3,7 +3,7 @@ const { Category } = require('../models')
 class Controller {
   static async read(req, res, next) {
     try {
-      const { shop_id } = req.body
+      const { shop_id } = req.query
       let categories = await Category.findAll({
         where: {
           shop_id
