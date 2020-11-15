@@ -11,7 +11,7 @@ function Register() {
       >
         <Form className="w-100">
           <Form.Group className="card-body">
-            <h4 class="card-title mb-3 mt-1 ">Register</h4>
+            <h4 className="card-title mb-3 mt-1 ">Register</h4>
 
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Name</Form.Label>
