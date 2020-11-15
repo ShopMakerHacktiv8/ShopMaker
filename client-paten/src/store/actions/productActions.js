@@ -11,7 +11,8 @@ import {
   PRODUCT_DELETE_FAIL,
   PRODUCT_EDIT_REQUEST,
   PRODUCT_EDIT_SUCCESS,
-  PRODUCT_EDIT_FAIL
+  PRODUCT_EDIT_FAIL,
+  PRODUCT_CREATE_RESET
 } from '../constants/productConstants'
 
 export const createProduct = (formData) => async (dispatch, getState) => {
@@ -32,6 +33,10 @@ export const createProduct = (formData) => async (dispatch, getState) => {
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
       payload: data
+    })
+
+    dispatch({
+      type: PRODUCT_CREATE_RESET
     })
 
     console.log(data, '<=== data add product di actions')
@@ -80,7 +85,7 @@ export const editProduct = (formData) => async (dispatch, getState) => {
   }
 }
 
-export const listProduct = () => async (dispatch, getState) => {
+export const listProduct = (category_id) => async (dispatch, getState) => {
   console.log('masuk list product di actions')
   try {
     dispatch({
@@ -89,12 +94,9 @@ export const listProduct = () => async (dispatch, getState) => {
     const { shopLoginReducer } = getState()
     const { shopInfo } = shopLoginReducer
     console.log(shopInfo.id, '<=== shop info id')
+    
     const { data } = await axios.get('/products', {
-      params: { shop_id: shopInfo.id },
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      params: { shop_id: shopInfo.id, category_id: category_id || null },
     })
 
     dispatch({

@@ -3,13 +3,20 @@ import { Form, Button, Container, Col, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { createProduct } from '../store/actions/productActions'
+import { Link, useHistory } from 'react-router-dom'
+import { listCategory } from '../store/actions/categoryAction'
 
 export default function AddProduct() {
   const { register, handleSubmit, errors } = useForm()
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const { loading, error, success } = useSelector(
     (state) => state.productCreateReducer
+  )
+
+  const { categories } = useSelector(
+    (state) => state.categoryListReducer
   )
 
   
@@ -23,9 +30,21 @@ export default function AddProduct() {
     formData.append('stock', data.stock)
     formData.append('price', data.price)
     formData.append('description', data.description)
+    formData.append('category_id', data.category_id)
 
     dispatch(createProduct(formData))
   }
+
+  useEffect(() => {
+    if (success) {
+      history.push('/home/products')
+    }
+    
+  }, [success])
+
+  useEffect(() => {
+    dispatch(listCategory())
+  }, [])
 
 
   return (
@@ -33,7 +52,7 @@ export default function AddProduct() {
       <Form onSubmit={handleSubmit(onSubmit)} className="mt-5">
         <h5 className="text-center">Show your product and made a tons of order!</h5>
         <Row>
-          <Col sm='12'>
+          <Col sm='6'>
             <Form.Group>
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -48,6 +67,20 @@ export default function AddProduct() {
                   { errors.name.message }
                 </Form.Text>
               )}
+            </Form.Group>
+          </Col>
+
+          <Col sm="6">
+            <Form.Group>
+              <Form.Label>Category</Form.Label>
+              <Form.Control as="select" name="category_id" ref={register}>
+                { categories && categories.map(category => {
+                  return (
+                    <option key={category.id} value={category.id}>{category.name}</option>
+                  )
+
+                })}
+              </Form.Control>
             </Form.Group>
           </Col>
 
@@ -117,9 +150,15 @@ export default function AddProduct() {
           </Col>
 
         </Row>
-          <div className="d-flex align-items-center justify-content-center">
-            <Button variant='primary' type='submit'>Create product</Button>
-          </div>
+        <Row>
+          <Col sm="6">
+          <Button variant='danger' className="w-100" as={Link} to={"/home/products"}>Cancel</Button>
+
+          </Col>
+          <Col cm="6">
+          <Button variant='primary' type='submit' className="w-100">Submit</Button>
+          </Col>
+        </Row>
       </Form>
     </Container>
   )

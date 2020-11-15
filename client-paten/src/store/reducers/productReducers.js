@@ -2,6 +2,7 @@ import {
   PRODUCT_CREATE_REQUEST,
   PRODUCT_CREATE_SUCCESS,
   PRODUCT_CREATE_FAIL,
+  PRODUCT_CREATE_RESET,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_SUCCESS,
@@ -14,15 +15,17 @@ import {
 } from '../constants/productConstants'
 
 export const productCreateReducer = (
-  state = { loading: false, product: {}, errors: []}, action
+  state = { loading: false, success: false, product: {}, errors: []}, action
 ) => {
   switch (action.type) {
     case PRODUCT_CREATE_REQUEST:
       return { loading: true }
     case PRODUCT_CREATE_SUCCESS:
-      return { loading: false, product: action.payload }
+      return { loading: false, success: true, product: action.payload }
     case PRODUCT_CREATE_FAIL:
       return { loading: false, product: {}, errors: action.payload }
+    case PRODUCT_CREATE_RESET:
+      return { loading: false, success: false, product: {}, errors: [] }
     default:
       return state
   }
