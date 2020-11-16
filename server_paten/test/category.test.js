@@ -25,20 +25,19 @@ let shop_data2 = {
   description: 'Ini toko nyoba',
 }
 
-let product = {};
+let product = {}
 
 afterAll(async (done) => {
-  if (process.env.NODE_ENV !== "test") return;
+  if (process.env.NODE_ENV !== 'test') return
   try {
-    await Shop.destroy({ truncate: true, cascade: true });
-    await Product.destroy({ truncate: true, cascade: true });
-    await Category.destroy({ truncate: true, cascade: true });
-    done();
+    await Shop.destroy({ truncate: true, cascade: true })
+    await Product.destroy({ truncate: true, cascade: true })
+    await Category.destroy({ truncate: true, cascade: true })
+    done()
   } catch (err) {
-    done(err);
+    done(err)
   }
-});
-
+})
 
 let access_token
 let shop_id
@@ -47,9 +46,8 @@ let category_id
 let category
 
 beforeAll(async (done) => {
-  if (process.env.NODE_ENV !== "test") return;
+  if (process.env.NODE_ENV !== 'test') return
   try {
-
     const shop = await Shop.create(shop_data)
     access_token = generateToken({
       id: shop.id,
@@ -67,7 +65,7 @@ beforeAll(async (done) => {
 
     category = await Category.create({
       shop_id,
-      name: 'ikan hias'
+      name: 'ikan hias',
     })
 
     category_id = category.id
@@ -75,24 +73,24 @@ beforeAll(async (done) => {
     product = await Product.create({
       shop_id,
       category_id: category_id,
-      name: "Iphone 11",
+      name: 'Iphone 11',
       image_url:
-        "https://i.pcmag.com/imagery/reviews/038Dr5TVEpwIv8rCljx6UcF-14..1588802180.jpg",
+        'https://i.pcmag.com/imagery/reviews/038Dr5TVEpwIv8rCljx6UcF-14..1588802180.jpg',
       price: 100000,
       stock: 5,
-      description: 'A13 Bionic is powerfull'
-    });
+      description: 'A13 Bionic is powerfull',
+    })
 
-    done();
+    done()
   } catch (err) {
-    done(err);
+    done(err)
   }
-});
+})
 
 describe('Create -- Success Case', () => {
   test('send correct token and input', (done) => {
     let category_data = {
-      name: "Electronic"
+      name: 'Electronic',
     }
     request(app)
       .post('/categories')
@@ -101,7 +99,7 @@ describe('Create -- Success Case', () => {
       .end(function (err, res) {
         if (err) throw err
         else {
-          expect(res.status).toBe(201);
+          expect(res.status).toBe(201)
           expect(res.body).toHaveProperty('id', expect.any(Number))
           expect(res.body).toHaveProperty('shop_id', shop_id)
           expect(res.body).toHaveProperty('name', category_data.name)
@@ -114,7 +112,7 @@ describe('Create -- Success Case', () => {
 describe('Create -- Error Case', () => {
   test('token not inserted', (done) => {
     let category_data = {
-      name: "Electronic"
+      name: 'Electronic',
     }
     request(app)
       .post('/categories')
@@ -137,7 +135,7 @@ describe('Create -- Error Case', () => {
       .set('access_token', access_token)
       .send({
         name: null,
-        shop_id: 1
+        shop_id: 1,
       })
       .end(function (err, res) {
         const errors = ['name is required']
@@ -150,9 +148,7 @@ describe('Create -- Error Case', () => {
         }
       })
   })
-
 })
-
 
 describe('Read -- Success Case', () => {
   test('send correct token', (done) => {
@@ -161,7 +157,7 @@ describe('Read -- Success Case', () => {
       .end(function (err, res) {
         if (err) throw err
         else {
-          expect(res.status).toBe(200);
+          expect(res.status).toBe(200)
           expect(res.body).toEqual(expect.any(Array))
           done()
         }
@@ -169,48 +165,47 @@ describe('Read -- Success Case', () => {
   })
 })
 
-
-describe("Delete Category / Error Case", () => {
-  test("Failed because of access_token not provided", (done) => {
+describe('Delete Category / Error Case', () => {
+  test('Failed because of access_token not provided', (done) => {
     request(app)
       .delete(`/categories/${category.id}`)
       .end((err, res) => {
-        if (err) throw err;
-        const errors = ["authentication failed"];
-        expect(res.status).toBe(401);
-        expect(res.body).toHaveProperty("errors", expect.any(Array));
-        expect(res.body.errors).toEqual(errors);
-        done();
-      });
-  });
-});
+        if (err) throw err
+        const errors = ['authentication failed']
+        expect(res.status).toBe(401)
+        expect(res.body).toHaveProperty('errors', expect.any(Array))
+        expect(res.body.errors).toEqual(errors)
+        done()
+      })
+  })
+})
 
-describe("Delete Category / Error Case", () => {
-  test("Failed because of category not found", (done) => {
+describe('Delete Category / Error Case', () => {
+  test('Failed because of category not found', (done) => {
     request(app)
       .delete(`/categories/${category.id + 99}`)
-      .set("access_token", access_token)
+      .set('access_token', access_token)
       .end((err, res) => {
-        if (err) throw err;
-        const errors = ["category not found"];
-        expect(res.status).toBe(404);
-        expect(res.body).toHaveProperty("errors", expect.any(Array));
-        expect(res.body.errors).toEqual(errors);
-        done();
-      });
-  });
-});
+        if (err) throw err
+        const errors = ['category not found']
+        expect(res.status).toBe(404)
+        expect(res.body).toHaveProperty('errors', expect.any(Array))
+        expect(res.body.errors).toEqual(errors)
+        done()
+      })
+  })
+})
 
-describe("Delete Category / Success Case", () => {
-  test("Should send object with key: message", (done) => {
+describe('Delete Category / Success Case', () => {
+  test('Should send object with key: message', (done) => {
     request(app)
       .delete(`/categories/${category.id}`)
-      .set("access_token", access_token)
+      .set('access_token', access_token)
       .end((err, res) => {
-        if (err) throw err;
-        expect(res.status).toBe(200);
-        expect(res.body).toHaveProperty("message", "delete category success");
-        done();
-      });
-  });
-});
+        if (err) throw err
+        expect(res.status).toBe(200)
+        expect(res.body).toHaveProperty('message', 'delete category success')
+        done()
+      })
+  })
+})

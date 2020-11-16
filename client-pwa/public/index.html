@@ -26,7 +26,8 @@
         console.log(shopId)
         link = document.createElement('link')
         link.href = `http://localhost:4000/clients/${shopId}`
-        // link.href = `http://192.168.100.9:4000/clients/${shopId}`
+        // link.href = `https://shopmaker.herokuapp.com/clients/${shopId}`
+
         link.rel = 'manifest'
 
         document.getElementsByTagName('head')[0].appendChild(link)
@@ -41,6 +42,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script
+      type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="<Mid-client-HSsImBCXcpnpdX_l>"
+    ></script>
     <title>React App</title>
   </head>
   <body>

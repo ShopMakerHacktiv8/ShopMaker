@@ -4,6 +4,8 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import NavbarHome from './components/NavbarHome'
 import DetailsPage from './pages/DetailsPage'
 import InstallPage from './pages/InstallPage'
+import OrdersPage from './pages/OrdersPage'
+import PaymentPage from './pages/PaymentPage'
 import ShopPage from './pages/ShopPage'
 
 function App() {
@@ -13,6 +15,12 @@ function App() {
       <Switch>
         <Route path='/:shopId/shop'>
           <ShopPage />
+        </Route>
+        <Route path='/:shopId/payment'>
+          <PaymentPage />
+        </Route>
+        <Route path='/:shopId/orders'>
+          <OrdersPage />
         </Route>
         <Route path='/:shopId/product/:productId'>
           <DetailsPage />

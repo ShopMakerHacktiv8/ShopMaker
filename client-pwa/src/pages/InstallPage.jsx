@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Button } from 'react-bootstrap'
 import PWAPrompt from 'react-ios-pwa-prompt'
 
 const InstallPage = () => {
@@ -29,7 +30,10 @@ const InstallPage = () => {
 
   return (
     <div>
-      <button onClick={installApp}>Download App</button>
+      <Button variant='success' onClick={installApp}>
+        Download for Android
+      </Button>
+      <PWAPrompt />
     </div>
   )
 }

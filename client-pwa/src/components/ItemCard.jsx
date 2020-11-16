@@ -5,13 +5,18 @@ import { Link, useParams } from 'react-router-dom'
 const ItemCard = ({ item }) => {
   const { shopId } = useParams()
   return (
-    <Col xs='6' md='4'>
+    <Col xs='12' md='6' className='my-2'>
       <Card>
-        <Card.Img variant='top' src={item.image_url} />
+        <Card.Img
+          variant='top'
+          src={item.image_url}
+          style={{ objectFit: 'cover' }}
+        />
         <Card.Body>
           <Card.Title>{item.name}</Card.Title>
-          <Card.Text>Rp. {item.price}</Card.Text>
-          {/* <div className='d-flex justify-content-between'> */}
+          <Card.Text>
+            Rp. {item.price.toLocaleString('en-US').replaceAll(',', '.')}
+          </Card.Text>
           <Button
             className='w-100'
             variant='primary'
@@ -21,10 +26,6 @@ const ItemCard = ({ item }) => {
           >
             View
           </Button>
-          {/* <Button variant='primary' size='sm'>
-              Add
-            </Button> */}
-          {/* </div> */}
         </Card.Body>
       </Card>
     </Col>
