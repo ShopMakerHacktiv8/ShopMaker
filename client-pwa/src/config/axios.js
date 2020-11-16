@@ -5,7 +5,7 @@ const instance = axios.create({
 })
 
 // const instance = axios.create({
-//   baseURL: 'http://192.168.100.9:4000',
+//   baseURL: 'https://shopmaker.herokuapp.com',
 // })
 
 export default instance

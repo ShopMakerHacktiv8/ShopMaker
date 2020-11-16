@@ -26,7 +26,8 @@
         console.log(shopId)
         link = document.createElement('link')
         link.href = `http://localhost:4000/clients/${shopId}`
-        // link.href = `http://192.168.100.9:4000/clients/${shopId}`
+        // link.href = `https://shopmaker.herokuapp.com/clients/${shopId}`
+
         link.rel = 'manifest'
 
         document.getElementsByTagName('head')[0].appendChild(link)
