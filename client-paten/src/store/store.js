@@ -2,8 +2,9 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { shopLoginReducer, shopRegisterReducer } from './reducers/shopReducers'
-import { productCreateReducer, productListReducer, productDeleteReducer, productEditReducer } from './reducers/productReducers'
+import { productCreateReducer, productListReducer, productDeleteReducer, productEditReducer, productGetByIdReducer } from './reducers/productReducers'
 import { categoryCreateReducer, categoryListReducer, categoryDeleteReducer } from './reducers/categoryReducer'
+import { cartListReducer } from './reducers/cartReducer'
 
 const reducer = combineReducers({
   shopLoginReducer,
@@ -12,9 +13,11 @@ const reducer = combineReducers({
   productListReducer,
   productDeleteReducer,
   productEditReducer,
+  productGetByIdReducer,
   categoryCreateReducer,
   categoryListReducer,
-  categoryDeleteReducer
+  categoryDeleteReducer,
+  cartListReducer
 })
 
 const shopInfoFromStorage = localStorage.getItem('shopInfo')

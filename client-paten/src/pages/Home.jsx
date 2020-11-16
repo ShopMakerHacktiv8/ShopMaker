@@ -5,6 +5,8 @@ import AddProduct from './AddProduct';
 import Product from './Product'
 import EditProduct from './EditProduct'
 import Category from './Category';
+import Shop from './Shop';
+import Order from './Order';
 
 
 function Home() {
@@ -15,26 +17,50 @@ function Home() {
     <Container fluid>
       <Row>
         <Col sm='3' className="p-3">
+          <Button variant="secondary" as={Link} to={`${match.url}/shop`} >
+
+            <h4>
+              <div className="d-flex justify-content-center"><i className="fas fa-home"></i>{" "}Home</div>
+            </h4>
+          </Button>
           <Button variant="secondary" as={Link} to={`${match.url}/products`} >
 
             <h4>
-  <div className="d-flex justify-content-center"><i className="fas fa-box"></i>{" "}Products</div>
+              <div className="d-flex justify-content-center"><i className="fas fa-box"></i>{" "}Products</div>
             </h4>
           </Button>
           <Button variant="secondary" as={Link} to={`${match.url}/category`} >
-
+          
             <h4>
               <div className="d-flex justify-content-center"><i className="fas fa-tags"></i>Category</div>
             </h4>
           </Button>
+          {/* <Button variant="secondary" as={Link} to={`${match.url}/order`} >
+          
+            <h4>
+              <div className="d-flex justify-content-center"><i className="fas fa-cart-plus"></i>Order</div>
+            </h4>
+          </Button> */}
         </Col>
 
         <Col sm='9'>
           <Switch>
             <Route exact path={`${match.url}/`}>
-              <Redirect to={`${match.url}/products`}>
+              <Redirect to={`${match.url}/shop`}>
 
               </Redirect>
+            </Route>
+
+            <Route path={`${match.url}/shop`}>
+              <Shop>
+
+              </Shop>
+            </Route>
+
+            <Route path={`${match.url}/order`}>
+              <Order>
+
+              </Order>
             </Route>
 
             <Route path={`${match.url}/add-product`}>
@@ -49,7 +75,7 @@ function Home() {
               </Product>
             </Route >
 
-            <Route path={`${match.url}/edit-product`}>
+            <Route path={`${match.url}/edit-product/:product_id`}>
               <EditProduct>
                 
               </EditProduct>
