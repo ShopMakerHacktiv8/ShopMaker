@@ -20,7 +20,7 @@ function NavbarHome() {
 
   console.log(shopId)
   return (
-    <Navbar bg='light' expand='lg'>
+    <Navbar bg='light' expand='lg' fixed='top'>
       {shop && shop.name ? (
         <Navbar.Brand as={Link} to={`/${shopId}/shop`}>
           {shop.name}
@@ -32,16 +32,21 @@ function NavbarHome() {
       )}
 
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
-      <Navbar.Collapse id='basic-navbar-nav'>
-        <Nav className='mr-auto'>
-          <Nav.Link as={Link} to={`/${shopId}/shop`}>
-            Home
-          </Nav.Link>
-          <Nav.Link href='/product'>Product</Nav.Link>
-          <Nav.Link href='#link'>Customer</Nav.Link>
-          <Nav.Link href='/login'>Logout</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
+      {shop && shop.name ? (
+        <Navbar.Collapse id='basic-navbar-nav'>
+          <Nav className='mr-auto'>
+            <Nav.Link as={Link} to={`/${shopId}/shop`}>
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to={`/${shopId}/orders`}>
+              Order History
+            </Nav.Link>
+            <Nav.Link>Reset</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      ) : (
+        <></>
+      )}
     </Navbar>
   )
 }

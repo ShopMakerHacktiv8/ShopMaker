@@ -8,16 +8,24 @@ import {
   PRODUCT_LIST_SUCCESS,
 } from '../constants/productConstants'
 
-export const listProduct = (shopId) => async (dispatch, getState) => {
+export const listProduct = (shopId, category_id) => async (
+  dispatch,
+  getState
+) => {
   console.log('masuk list product di actions')
   try {
     dispatch({
       type: PRODUCT_LIST_REQUEST,
     })
+
+    // const { data } = await axios.get('/products', {
+    //   params: { shop_id: shopInfo.id, category_id: category_id || null },
+    // })
+
     const { data } = await axios.get(
       '/products',
       {
-        params: { shop_id: shopId },
+        params: { shop_id: shopId, category_id: category_id || null },
       },
       {
         headers: {

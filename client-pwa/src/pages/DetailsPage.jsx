@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { getDetailsProduct } from '../store/actions/productActions'
 import axios from '../config/axios'
+import { addOrderHistory } from '../store/actions/orderActions'
 
 const DetailsPage = () => {
   const [token, setToken] = useState('')
@@ -57,12 +58,23 @@ const DetailsPage = () => {
         phone: user.phone,
         address: user.address,
         total: cart.total,
+        product_id: productId,
+        quantity: cart.quantity,
       },
     })
       .then((data) => {
         setToken(data.data.token)
         console.log(data.data.token, '<<<<<<<<<<<<<token')
-        window.snap.pay(token)
+        dispatch(
+          addOrderHistory({
+            product: product.name,
+            price: product.price,
+            quantity: product.quantity,
+            total: cart.total,
+            address: user.address,
+          })
+        )
+        window.snap.pay(data.data.token)
       })
       .catch((err) => {
         return err
@@ -70,9 +82,9 @@ const DetailsPage = () => {
   }
 
   return (
-    <Container fluid className='w-100 px-0'>
+    <Container fluid className='w-100 pt-5'>
       {product.name && (
-        <Row className='md-12'>
+        <Row className='md-12 mt-5'>
           <Col className='col-12'>
             <Image src={product.image_url} className='w-100' fluid></Image>
           </Col>
@@ -81,7 +93,9 @@ const DetailsPage = () => {
               <h4>{product.name}</h4>
             </Col>
             <Col className='col-12'>
-              <p>Rp {product.price}</p>
+              <p>
+                Rp {product.price.toLocaleString('en-US').replaceAll(',', '.')}
+              </p>
             </Col>
             <Col className='col-12'>
               <p>{product.description}</p>
@@ -117,7 +131,7 @@ const DetailsPage = () => {
             <Col className='col-12 d-flex justify-content-center mt-2'>
               <p>Total: Rp. {cart.total}</p>
             </Col>
-            <Col className='col-12'>
+            <Col className='col-12 mb-3'>
               <Button
                 variant='primary'
                 className='w-100'

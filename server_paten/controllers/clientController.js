@@ -1,6 +1,6 @@
 const generateManifest = require('../helpers/manifest')
 const midtransClient = require('midtrans-client')
-const { Shop } = require('../models')
+const { Shop, Cart, Product } = require('../models')
 
 class ClientController {
   static async getManifest(req, res, next) {
@@ -20,10 +20,32 @@ class ClientController {
 
   static async buyProduct(req, res, next) {
     try {
-      const { name, phone, address, total } = req.body
+      console.log('AHAAAAAAAAAAADSDCSCDSCD')
+      const { name, phone, address, total, product_id, quantity } = req.body
       // Create Snap API instance
       const { id } = req.params
-      console.log(id)
+
+      const cartObj = {
+        user_name: name,
+        user_phone: phone,
+        user_address: address,
+        product_id: product_id,
+        quantity: quantity,
+        shop_id: id,
+      }
+
+      const product = await Product.findByPk(product_id)
+
+      if (!product) throw { statusCode: 404, msg: 'product not found' }
+
+      if (quantity > product.stock)
+        throw { statusCode: 400, msg: 'stock not available' }
+
+      product.stock = product.stock - quantity
+      product.save()
+
+      await Cart.create(cartObj)
+
       let snap = new midtransClient.Snap({
         // Set to true if you want Production Environment (accept real transaction).
         isProduction: false,

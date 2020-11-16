@@ -23,8 +23,8 @@ function PaymentPage() {
 
   return (
     <>
-      <Container>
-        <Form onSubmit={handleSubmit(onSubmit)}>
+      <Container className='my-5'>
+        <Form onSubmit={handleSubmit(onSubmit)} className='pt-5'>
           <Form.Group>
             <h3 className='mb-3 mt-3'>Login</h3>
             <Form.Group controlId='form.name'>
