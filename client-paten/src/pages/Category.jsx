@@ -51,7 +51,7 @@ export default function Category() {
             </Form.Group>
           </Col>
           <Col>
-            <Button variant='primary' type='submit' className="mt-4"><i class="fas fa-plus"></i></Button>
+            <Button variant='primary' type='submit' className="mt-4"><i className="fas fa-plus"></i></Button>
           </Col>
         </Row>
       </Form>

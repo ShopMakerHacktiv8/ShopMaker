@@ -1,15 +1,25 @@
 import React, { useEffect } from 'react'
 import { Form, Button, Container, Col, Row, Card, Image } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { deleteProduct } from '../store/actions/productActions'
+import { deleteProduct, editProduct } from '../store/actions/productActions'
+import { Link, Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 
 
 export default function ProductItem({ product }) {
   const dispatch = useDispatch()
+  let match = useRouteMatch()
+  console.log(match, '<=== match url');
+  let url = "/" + match.url.split("/")[1]
+  console.log(url, '<=== url split');
 
   function handleDelete() {
     console.log('masukkk delete handler');
     dispatch(deleteProduct(product.id))
+  }
+
+  function handleEdit() {
+    console.log('masukkk edit handler')
+    // dispatch(editProduct(product.id))
   }
 
   return (
@@ -30,7 +40,7 @@ export default function ProductItem({ product }) {
             <Col sm="1">
               <div className="d-flex flex-column align-items-end justify-content-between" style={{ height: "150px"}}>
                 <Button onClick={handleDelete} size="sm" variant="light"><i className="fas fa-times text text-danger"></i></Button>
-                <Button variant="light" size="sm"><i className="fas fa-pen-fancy"></i></Button>
+                <Button as={Link} to={`${url}/edit-product/${product.id}`} onClick={handleEdit} variant="light" size="sm"><i className="fas fa-pen-fancy"></i></Button>
               </div>
             </Col>
 

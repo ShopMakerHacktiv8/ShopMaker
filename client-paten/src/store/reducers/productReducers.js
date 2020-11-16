@@ -11,7 +11,11 @@ import {
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_EDIT_REQUEST,
   PRODUCT_EDIT_SUCCESS,
-  PRODUCT_EDIT_FAIL
+  PRODUCT_EDIT_FAIL,
+  PRODUCT_EDIT_RESET,
+  PRODUCT_GETBYID_REQUEST,
+  PRODUCT_GETBYID_SUCCESS,
+  PRODUCT_GETBYID_FAIL
 } from '../constants/productConstants'
 
 export const productCreateReducer = (
@@ -46,6 +50,21 @@ export const productListReducer = (
   }
 }
 
+export const productGetByIdReducer = (
+  state = { loading: false, product: {}, errors: []}, action
+) => {
+  switch (action.type) {
+    case PRODUCT_GETBYID_REQUEST:
+      return { loading: true }
+    case PRODUCT_GETBYID_SUCCESS:
+      return { loading: false, product: action.payload }
+    case PRODUCT_GETBYID_FAIL:
+      return { loading: false, product: {}, errors: action.payload }
+    default:
+      return state
+  }
+}
+
 export const productDeleteReducer = (
   state = { loading: false, product: {}, errors: []}, action
 ) => {
@@ -62,15 +81,17 @@ export const productDeleteReducer = (
 }
 
 export const productEditReducer = (
-  state = { loading: false, product: {}, errors: []}, action
+  state = { loading: false, success: false, product: {}, errors: []}, action
 ) => {
   switch (action.type) {
     case PRODUCT_EDIT_REQUEST:
       return { loading: true }
     case PRODUCT_EDIT_SUCCESS:
-      return { loading: false, product: action.payload }
+      return { loading: false, success: true, product: action.payload }
     case PRODUCT_EDIT_FAIL:
       return { loading: false, product: {}, errors: action.payload }
+    case PRODUCT_EDIT_RESET:
+      return { loading: false, success: false, product: {}, errors: [] }
     default:
       return state
   }

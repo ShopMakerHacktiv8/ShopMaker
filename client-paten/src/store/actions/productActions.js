@@ -3,6 +3,7 @@ import {
   PRODUCT_CREATE_REQUEST,
   PRODUCT_CREATE_SUCCESS,
   PRODUCT_CREATE_FAIL,
+  PRODUCT_CREATE_RESET,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
@@ -12,7 +13,10 @@ import {
   PRODUCT_EDIT_REQUEST,
   PRODUCT_EDIT_SUCCESS,
   PRODUCT_EDIT_FAIL,
-  PRODUCT_CREATE_RESET
+  PRODUCT_EDIT_RESET,
+  PRODUCT_GETBYID_REQUEST,
+  PRODUCT_GETBYID_FAIL,
+  PRODUCT_GETBYID_SUCCESS
 } from '../constants/productConstants'
 
 export const createProduct = (formData) => async (dispatch, getState) => {
@@ -53,15 +57,16 @@ export const createProduct = (formData) => async (dispatch, getState) => {
   }
 }
 
-export const editProduct = (formData) => async (dispatch, getState) => {
+export const editProduct = (id, formData) => async (dispatch, getState) => {
   console.log('masuk edit product di action')
+  console.log(id, '<=== id di edit prodduct')
   try {
     dispatch({
       type: PRODUCT_EDIT_REQUEST
     })
     const { shopLoginReducer } = getState()
     const { shopInfo } = shopLoginReducer
-    const { data } = await axios.put('/products', formData, {
+    const { data } = await axios.put(`/products/${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'access_token': shopInfo.access_token
@@ -71,6 +76,10 @@ export const editProduct = (formData) => async (dispatch, getState) => {
     dispatch({
       type: PRODUCT_EDIT_SUCCESS,
       payload: data,
+    })
+
+    dispatch({
+      type: PRODUCT_EDIT_RESET
     })
 
     console.log(data, '<=== data edit product di actions')
@@ -151,5 +160,35 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
         ? error.response.data.errors
         : ['error unknown'],
     })   
+  }
+}
+
+export const getByIdProduct = (productId) => async (dispatch, getState) => {
+  console.log('masuk get by id product di action')
+  try {
+    dispatch({
+      type: PRODUCT_GETBYID_REQUEST
+    })
+    const { data } = await axios.get(`/products/${productId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+
+    dispatch({
+      type: PRODUCT_GETBYID_SUCCESS,
+      payload: data,
+    })
+
+    console.log(data, '<==== get by id product di action')
+  } catch (error) {
+    console.log(error, '<==== error get by id product')
+    dispatch({
+      type: PRODUCT_GETBYID_FAIL,
+      payload: 
+        error.response && error.response.data.errors
+        ? error.response.data.errors
+        : ['error unknown'],
+    })
   }
 }

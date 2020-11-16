@@ -3,8 +3,12 @@ const { Product, Category } = require('../models')
 class ProductController {
   static async createProduct(req, res, next) {
     try {
-      const { category_id, name, price, stock, description, file } = req.body
+      let { category_id, name, price, stock, description, file } = req.body
+      if (category_id === "undefined") {
+        category_id = null
+      }
       const productObj = { shop_id: req.shopData.id, category_id, name, image_url: file, price, stock, description }
+      console.log(category_id, '<=== category id product controller')
       const newProduct = await Product.create(productObj)
 
       res.status(201).json({
@@ -19,6 +23,7 @@ class ProductController {
       });
             
     } catch (err) {
+      console.log(err, '<=== error add product at controller')
       next(err)
     }
   }

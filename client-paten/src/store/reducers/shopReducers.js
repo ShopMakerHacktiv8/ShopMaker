@@ -1,3 +1,4 @@
+import { PRODUCT_GETBYID_FAIL } from '../constants/productConstants'
 import {
   SHOP_LOGIN_FAIL,
   SHOP_LOGIN_REQUEST,
@@ -37,7 +38,7 @@ export const shopRegisterReducer = (
     case SHOP_REGISTER_SUCCESS:
       return { loading: false, success: true }
     case SHOP_REGISTER_FAIL:
-      return { loading: false, errors: action.payload }
+      return { loading: false, success: false, errors: action.payload }
     case SHOP_REGISTER_RESET:
       return { loading: false, success: false, errors: [] }
     default:
