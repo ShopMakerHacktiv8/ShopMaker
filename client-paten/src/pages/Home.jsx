@@ -35,12 +35,12 @@ function Home() {
               <div className="d-flex justify-content-center"><i className="fas fa-tags"></i>Category</div>
             </h4>
           </Button>
-          {/* <Button variant="secondary" as={Link} to={`${match.url}/order`} >
+          <Button variant="secondary" as={Link} to={`${match.url}/order`} >
           
             <h4>
               <div className="d-flex justify-content-center"><i className="fas fa-cart-plus"></i>Order</div>
             </h4>
-          </Button> */}
+          </Button>
         </Col>
 
         <Col sm='9'>

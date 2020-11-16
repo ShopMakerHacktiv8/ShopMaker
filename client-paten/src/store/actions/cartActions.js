@@ -6,7 +6,7 @@ import {
   CART_LIST_REQUEST
 } from '../constants/cartConstants'
 
-export const listCart = (id) => async (dispatch, getState) => {
+export const listCart = () => async (dispatch, getState) => {
   console.log('masuk list cart di action')
   try {
     dispatch({
@@ -16,7 +16,7 @@ export const listCart = (id) => async (dispatch, getState) => {
     const { shopLoginReducer } = getState()
     const { shopInfo } = shopLoginReducer
     console.log(shopInfo.id, '<=== shop info id')
-    const { data } = await axios.get(`/shops/${id}/carts`)
+    const { data } = await axios.get(`/shops/${shopInfo.id}/carts`)
 
     dispatch({
       type: CART_LIST_SUCCESS,
