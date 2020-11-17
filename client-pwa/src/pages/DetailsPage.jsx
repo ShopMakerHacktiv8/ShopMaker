@@ -84,7 +84,7 @@ const DetailsPage = () => {
 
   return (
     <Container fluid className='w-100 pt-5'>
-      {loading && <Loader />}
+      {!product.name && <Loader />}
       {product.name && (
         <Row className='md-12 mt-5'>
           <Col className='col-12'>

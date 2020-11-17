@@ -4,12 +4,12 @@ import { Spinner } from 'react-bootstrap'
 const Loader = () => {
   return (
     <Spinner
-      className='mx-auto mt-3'
+      className='mx-auto mt-5'
       animation='border'
       role='status'
       style={{
-        width: '40px',
-        height: '40px',
+        width: '60px',
+        height: '60px',
         display: 'block',
       }}
     >

@@ -44,7 +44,8 @@ const ShopPage = () => {
             )
           })}
       </Form.Control>
-      {loading && <Loader />}
+
+      {!products.length && <Loader />}
 
       <Row>
         {products &&
