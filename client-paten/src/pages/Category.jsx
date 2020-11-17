@@ -41,6 +41,7 @@ export default function Category() {
                 placeholder="Enter category"
                 name="name"
                 ref={register({ required: 'Name is required'})}
+                className="rounded"
                 isInvalid={errors.name}
               />
               { errors.name && (
@@ -51,7 +52,7 @@ export default function Category() {
             </Form.Group>
           </Col>
           <Col>
-            <Button variant='primary' type='submit' className="mt-4"><i className="fas fa-plus"></i></Button>
+            <Button variant='primary' type='submit' className="mt-4 rounded"><i className="fas fa-plus"></i></Button>
           </Col>
         </Row>
       </Form>
@@ -62,7 +63,7 @@ export default function Category() {
           key={category.id} 
           variant="outline-primary" 
           size="sm"
-          className="mr-2"
+          className="mr-2 rounded"
           onClick={() => {handleDelete(category.id)}}
           >
             {category.name}

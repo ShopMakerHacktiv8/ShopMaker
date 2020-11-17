@@ -159,11 +159,11 @@ export default function AddProduct() {
             </Row>
             <Row>
               <Col sm="6">
-              <Button variant='danger' className="w-100" as={Link} to={"/home/products"}>Cancel</Button>
+              <Button variant='danger' className="w-100 rounded" as={Link} to={"/home/products"}>Cancel</Button>
 
               </Col>
               <Col cm="6">
-              <Button variant='primary' type='submit' className="w-100">Submit</Button>
+              <Button variant='primary' type='submit' className="w-100 rounded">Submit</Button>
               </Col>
             </Row>
           </Form>
