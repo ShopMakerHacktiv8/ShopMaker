@@ -47,7 +47,7 @@ export default function Product() {
 
             })}
           </Form.Control>
-        <Button as={Link} to={`${url}/add-product`}>
+        <Button as={Link} to={`${url}/add-product`} className="rounded">
           Add Product
         </Button>
       </div>

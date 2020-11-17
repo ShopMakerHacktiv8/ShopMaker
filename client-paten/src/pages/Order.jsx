@@ -18,10 +18,12 @@ export default function Order() {
     <Container>
       {/* <h1>xixixi</h1> */}
       {/* { JSON.stringify(carts)} */}
-      <h3 className="mt-2 d-flex justify-content-center">Order History</h3>
+      <h3 className="mt-5 d-flex justify-content-start">Order History</h3>
+      <Row>
+        
         { carts && carts.map(cart => (
           <Col sm="12" key={cart.id}>
-            <Card className="p-2 shadow-sm my-2">
+            <Card className="p-2 shadow-sm my-2 rounded">
               <Row>
                 <Col sm="3">
                   <Image height="150" src={ cart.Product.image_url} width="100%" style={{ objectFit: "cover" }} />
@@ -29,17 +31,16 @@ export default function Order() {
                 </Col>
                 
                 <Col sm="4">
-                  <p style={{ fontSize: "5 rem"}}><strong>User Name : {cart.user_name}</strong></p>                  
-                  <p>Quantity ({cart.quantity} items) </p>
+                  <p style={{ fontSize: "5 rem"}}><strong>User Name : {cart.user_name}</strong></p>
                   <p>Address ({cart.user_address}) </p>
                   <p>Phone ({cart.user_phone}) </p>
                 </Col>
 
                 <Col sm="4">
                   <p style={{ fontSize: "2 rem"}}><strong>Product name: {cart.Product.name}</strong></p>                  
-                  <p>Price (Rp {cart.Product.price.toLocaleString("en-US").replaceAll(",", ".")}) </p>
+                  {/* <p>Price (Rp {cart.Product.price.toLocaleString("en-US").replaceAll(",", ".")}) </p> */}
                   {/* {product.price.toLocaleString("en-US").replaceAll(",", ".")} */}
-                  <p>Total (Rp {(cart.quantity * cart.Product.price).toLocaleString("en-US").replaceAll(",", ".")}) </p>
+                  <p>Total: { cart.quantity } x Rp {cart.Product.price.toLocaleString("en-US").replaceAll(",", ".")}  = Rp {(cart.quantity * cart.Product.price).toLocaleString("en-US").replaceAll(",", ".")} </p>
                 </Col>
     
                 <Col sm="1">
@@ -51,6 +52,7 @@ export default function Order() {
             </Card>
           </Col>
         ))}
+      </Row>
       
 
     </Container>

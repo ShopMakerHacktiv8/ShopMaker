@@ -1,4 +1,3 @@
-import { PRODUCT_GETBYID_FAIL } from '../constants/productConstants'
 import {
   SHOP_LOGIN_FAIL,
   SHOP_LOGIN_REQUEST,

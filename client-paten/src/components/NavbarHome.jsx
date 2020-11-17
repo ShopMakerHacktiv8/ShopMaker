@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store/actions/shopActions'
@@ -14,13 +14,13 @@ function NavbarHome() {
 
   return (
     <>
-      <Navbar bg='light' expand='lg'>
+      <Navbar bg='light' expand='lg' className="d-flex justify-content-between" >
         <Navbar.Brand as={Link} to={shopInfo && shopInfo.name ? '/home' : '/'}>
           ShopMaker
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='mr-auto'>
+        <Navbar.Collapse id='basic-navbar-nav' className="justify-content-end">
+          <Nav className='container-fluid'>
             {shopInfo && !shopInfo.name && (
               <>
                 <Nav.Link as={Link} to='/login'>
@@ -30,13 +30,16 @@ function NavbarHome() {
             )}
             {shopInfo && shopInfo.name && (
               <>
-                <Nav.Link as={Link} to='/home'>
+                {/* <Nav.Link as={Link} to='/home'>
                   Home
                 </Nav.Link>
                 <Nav.Link as={Link} to='/product'>
                   Product
-                </Nav.Link>
-                <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
+                </Nav.Link> */}
+                <Nav.Item className="ml-auto" >
+                <Nav.Link onClick={logoutHandler}><Button size="sm" className="btn-danger" >Logout</Button></Nav.Link>
+
+                </Nav.Item>
               </>
             )}
           </Nav>

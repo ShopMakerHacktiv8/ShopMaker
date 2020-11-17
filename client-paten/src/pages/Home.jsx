@@ -17,28 +17,28 @@ function Home() {
     <Container fluid>
       <Row>
         <Col sm='3' className="p-3">
-          <Button variant="secondary" as={Link} to={`${match.url}/shop`} >
+          <Button variant="secondary" as={Link} to={`${match.url}/shop`} size="sm" className="w-100 mb-1 d-flex justify-content-start">
 
             <h4>
-              <div className="d-flex justify-content-center"><i className="fas fa-home"></i>{" "}Home</div>
+              <div className="d-flex justify-content-center"><i className="fas fa-home "></i>&nbsp;Home</div>
             </h4>
           </Button>
-          <Button variant="secondary" as={Link} to={`${match.url}/products`} >
+          <Button variant="secondary" as={Link} to={`${match.url}/products`} size="sm" className="w-100 mb-1 d-flex justify-content-start" >
 
             <h4>
-              <div className="d-flex justify-content-center"><i className="fas fa-box"></i>{" "}Products</div>
+              <div className="d-flex justify-content-center"><i className="fas fa-box"></i>&nbsp;Products</div>
             </h4>
           </Button>
-          <Button variant="secondary" as={Link} to={`${match.url}/category`} >
+          <Button variant="secondary" as={Link} to={`${match.url}/category`} size="sm" className="w-100 mb-1 d-flex justify-content-start" >
           
             <h4>
-              <div className="d-flex justify-content-center"><i className="fas fa-tags"></i>Category</div>
+              <div className="d-flex justify-content-center"><i className="fas fa-tags"></i>&nbsp;Category</div>
             </h4>
           </Button>
-          <Button variant="secondary" as={Link} to={`${match.url}/order`} >
+          <Button variant="secondary" as={Link} to={`${match.url}/order`} size="sm" className="w-100 mb-1 d-flex justify-content-start">
           
             <h4>
-              <div className="d-flex justify-content-center"><i className="fas fa-cart-plus"></i>Order</div>
+              <div className="d-flex justify-content-center"><i className="fas fa-cart-plus"></i>&nbsp;Order</div>
             </h4>
           </Button>
         </Col>
