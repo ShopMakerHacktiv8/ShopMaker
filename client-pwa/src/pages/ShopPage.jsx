@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProduct } from '../store/actions/productActions'
 import { listCategory } from '../store/actions/categoryActions'
+import Loader from '../components/Loader'
 
 const ShopPage = () => {
   const { shopId } = useParams()
@@ -43,6 +44,8 @@ const ShopPage = () => {
             )
           })}
       </Form.Control>
+      {loading && <Loader />}
+
       <Row>
         {products &&
           products.map((product) => (
