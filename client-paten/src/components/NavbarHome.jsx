@@ -14,31 +14,30 @@ function NavbarHome() {
 
   return (
     <>
-      <Navbar bg='light' expand='lg' className="d-flex justify-content-between" >
+      <Navbar bg='light' expand='lg' className='d-flex justify-content-between'>
         <Navbar.Brand as={Link} to={shopInfo && shopInfo.name ? '/home' : '/'}>
           ShopMaker
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav' className="justify-content-end">
+        <Navbar.Collapse id='basic-navbar-nav' className='justify-content-end'>
           <Nav className='container-fluid'>
             {shopInfo && !shopInfo.name && (
               <>
-                <Nav.Link as={Link} to='/login'>
-                  Login
-                </Nav.Link>{' '}
+                <Nav.Item className='ml-auto'>
+                  <Nav.Link as={Link} to='/login'>
+                    Login
+                  </Nav.Link>
+                </Nav.Item>
               </>
             )}
             {shopInfo && shopInfo.name && (
               <>
-                {/* <Nav.Link as={Link} to='/home'>
-                  Home
-                </Nav.Link>
-                <Nav.Link as={Link} to='/product'>
-                  Product
-                </Nav.Link> */}
-                <Nav.Item className="ml-auto" >
-                <Nav.Link onClick={logoutHandler}><Button size="sm" className="btn-danger" >Logout</Button></Nav.Link>
-
+                <Nav.Item className='ml-auto'>
+                  <Nav.Link onClick={logoutHandler}>
+                    <Button size='sm' className='btn-danger'>
+                      Logout
+                    </Button>
+                  </Nav.Link>
                 </Nav.Item>
               </>
             )}

@@ -115,31 +115,39 @@ const DetailsPage = () => {
           <Col className='col-12 d-flex justify-content-center align-items-center'>
             <Button
               size='sm'
-              style={{ width: '35px', height: '35px', padding: '0px 0px' }}
+              style={{ width: '30px', height: '30px', padding: '0px 0px' }}
               onClick={substractQuantity}
               disabled={!cart.quantity}
+              className='rounded-circle'
+              variant='danger'
             >
               -
             </Button>
-            <div className='ml-2 mr-2' style={{ fontSize: '18px' }}>
+            <div className='ml-2 mr-2' style={{ fontSize: '14px' }}>
               {cart.quantity}
             </div>
             <Button
               size='sm'
-              style={{ width: '35px', height: '35px', padding: '0px 0px' }}
+              style={{ width: '30px', height: '30px', padding: '0px 0px' }}
               onClick={addQuantity}
               disabled={cart.quantity === product.stock}
+              className='rounded-circle'
+              variant='success'
             >
               +
             </Button>
           </Col>
           <Col className='col-12 d-flex justify-content-center mt-2'>
-            <p>Total: Rp. {cart.total}</p>
+            <p style={{ fontSize: '18px' }}>
+              Total: Rp.{' '}
+              {cart.total.toLocaleString('en-US').replaceAll(',', '.')}
+            </p>
           </Col>
           <Col className='col-12 mb-3'>
             <Button
               variant='primary'
               className='w-100'
+              size='md'
               disabled={!product.stock || !cart.quantity}
               onClick={handleBuy}
             >
