@@ -37,9 +37,7 @@ export default function Order() {
                 </Col>
 
                 <Col sm="4">
-                  <p style={{ fontSize: "2 rem"}}><strong>Product name: {cart.Product.name}</strong></p>                  
-                  {/* <p>Price (Rp {cart.Product.price.toLocaleString("en-US").replaceAll(",", ".")}) </p> */}
-                  {/* {product.price.toLocaleString("en-US").replaceAll(",", ".")} */}
+                  <p style={{ fontSize: "2 rem"}}><strong>Product name: {cart.Product.name}</strong></p>
                   <p>Total: { cart.quantity } x Rp {cart.Product.price.toLocaleString("en-US").replaceAll(",", ".")}  = Rp {(cart.quantity * cart.Product.price).toLocaleString("en-US").replaceAll(",", ".")} </p>
                 </Col>
     
