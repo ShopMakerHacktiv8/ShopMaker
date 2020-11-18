@@ -33,7 +33,7 @@ const ItemCard = ({ item }) => {
                   Rp. {item.price.toLocaleString('en-US').replaceAll(',', '.')}
                 </Card.Text>
                 {item.stock ? (
-                  <Card.Text className=' text my-0'>
+                  <Card.Text className=' text text-success my-0'>
                     In Stock ({item.stock} items)
                   </Card.Text>
                 ) : (
