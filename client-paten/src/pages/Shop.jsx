@@ -20,13 +20,13 @@ export default function Shop() {
   return (
     <Container>
       <div
-        style={{ height: '55vh' }}
+        style={{ height: '70vh' }}
         className='d-flex align-items-center justify-content-center flex-column'
       >
         <div className="mb-5 text-center mt-5">
           <h1>Hello, {shopInfo.name}</h1> <br></br>
           <h3>Your Shop is Ready!</h3>
-          <h5>Now, you can scan this barcode and share to your potential customer</h5>
+          <h5>Now, you can scan this QR-Code and share to your potential customer</h5>
         </div>
         
         <Row>

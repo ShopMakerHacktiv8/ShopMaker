@@ -32,18 +32,18 @@ export default function ProductItem({ product }) {
         <Card className="p-2 shadow-sm my-2">
           <Row>
             <Col sm="4">
-              <Image height="150" width="100%" style={{ objectFit: "cover"  }} src={product.image_url} />
+              <Image height="120" width="100%" style={{ objectFit: "cover"  }} src={product.image_url} />
 
             </Col>
             
-            <Col sm="7">
-              <h5 style={{ fontWeight: 'bold' }}>{product.name}</h5>
-              <p className="bg-secondary">Rp. {product.price.toLocaleString("en-US").replaceAll(",", ".")}</p> 
-              <p>In stock ({product.stock} items)</p>
+            <Col className="d-flex flex-column justify-content-around" sm="7">
+              <p style={{ fontWeight: 'bold', fontSize: '18px' }} className="mb-0">{product.name}</p>
+              <p style={{ marginBottom: '0px'}}>Rp. {product.price.toLocaleString("en-US").replaceAll(",", ".")}</p> 
+              <p style={{ marginBottom: '0px'}}>In stock ({product.stock} items)</p>
             </Col>
 
             <Col sm="1">
-              <div className="d-flex flex-column align-items-end justify-content-between" style={{ height: "150px"}}>
+              <div className="d-flex flex-column align-items-end justify-content-between" style={{ height: "120px"}}>
                 <Button onClick={handleShow} size="sm" variant="light"><i className="fas fa-times text text-danger fa-lg"></i></Button>
                 <Button as={Link} to={`${url}/edit-product/${product.id}`} onClick={handleEdit} variant="light" size="sm"><i className="fas fa-pen-fancy fa-lg"></i></Button>
               </div>

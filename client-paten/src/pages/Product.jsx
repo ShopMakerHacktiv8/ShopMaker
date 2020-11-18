@@ -35,7 +35,7 @@ export default function Product() {
    
   return (
     <Container>
-      <div className="d-flex justify-content-between align-items-center mt-3 mb-3">
+      <div className="d-flex justify-content-between align-items-center mt-5 mb-3">
         <h3>Product List</h3>
       
           <Form.Control className="w-25" as="select" name="category_id" onChange={handleCategoryOnChange}>
