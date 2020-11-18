@@ -18,9 +18,9 @@ function NavbarHome() {
         <Navbar.Brand as={Link} to={shopInfo && shopInfo.name ? '/home' : '/'}>
           ShopMaker
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Toggle aria-controls='basic-navbar-nav' className="p-0" />
         <Navbar.Collapse id='basic-navbar-nav' className='justify-content-end'>
-          <Nav className='container-fluid'>
+          <Nav className='container-fluid p-0'>
             {shopInfo && !shopInfo.name && (
               <>
                 <Nav.Item className='ml-auto'>
@@ -33,10 +33,9 @@ function NavbarHome() {
             {shopInfo && shopInfo.name && (
               <>
                 <Nav.Item className='ml-auto'>
-                  <Nav.Link onClick={logoutHandler}>
-                    <Button size='sm' className='btn-danger'>
+                  <Nav.Link onClick={logoutHandler} className="text-danger">
                       Logout
-                    </Button>
+                    
                   </Nav.Link>
                 </Nav.Item>
               </>
