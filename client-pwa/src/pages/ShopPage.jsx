@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Card, Row, Col, Container, Button, Image, Form } from 'react-bootstrap'
+import { Row, Container, Form } from 'react-bootstrap'
 import ItemCard from '../components/ItemCard'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,8 +28,10 @@ const ShopPage = () => {
 
   return (
     <Container fluid className='pt-5'>
+      <h4 className='mt-5'>Our Products</h4>
+
       <Form.Control
-        className='w-100 mt-5'
+        className='w-100 mt-1'
         as='select'
         name='category_id'
         onChange={handleCategoryOnChange}

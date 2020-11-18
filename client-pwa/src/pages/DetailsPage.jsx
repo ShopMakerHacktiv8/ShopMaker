@@ -23,6 +23,7 @@ const DetailsPage = () => {
   const [cart, setCart] = useState({ quantity: 0, total: 0 })
 
   useEffect(() => {
+    product.name = ''
     dispatch(getDetailsProduct(productId))
   }, [])
 
@@ -95,15 +96,15 @@ const DetailsPage = () => {
           </Col>
           <Col className='col-12'>
             <div className='d-flex align-items-center'>
-              <p className='p-1 bg-light rounded mr-2'>
+              <p className='px-2 p-1 bg-light rounded mr-2'>
                 Rp {product.price.toLocaleString('en-US').replaceAll(',', '.')}
               </p>
               {product.stock ? (
-                <p className='bg-success p-1 text text-white rounded'>
+                <p className='bg-primary px-2 p-1 text text-white rounded'>
                   In Stock ({product.stock})
                 </p>
               ) : (
-                <p className='bg-danger p-1 text text-white rounded'>
+                <p className='bg-danger px-2 p-1 text text-white rounded'>
                   Out of stock
                 </p>
               )}
@@ -123,7 +124,7 @@ const DetailsPage = () => {
             >
               -
             </Button>
-            <div className='ml-2 mr-2' style={{ fontSize: '14px' }}>
+            <div className='ml-2 mr-2' style={{ fontSize: '16px' }}>
               {cart.quantity}
             </div>
             <Button
@@ -132,7 +133,7 @@ const DetailsPage = () => {
               onClick={addQuantity}
               disabled={cart.quantity === product.stock}
               className='rounded-circle'
-              variant='success'
+              variant='primary'
             >
               +
             </Button>

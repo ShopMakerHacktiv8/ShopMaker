@@ -8,7 +8,7 @@ const OrdersPage = () => {
   return (
     <Container fluid className='pt-5'>
       <div className='pt-5'></div>
-      <h3>Order History</h3>
+      <h4>Order History</h4>
       {orders && orders.map((order) => <OrderCard order={order} />)}
     </Container>
   )
