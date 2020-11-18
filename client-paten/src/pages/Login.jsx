@@ -65,7 +65,7 @@ function Login({ history }) {
               </Form.Group>
 
               <Button variant='primary' type='submit'>
-                Create
+                Login
               </Button>
             </Form.Group>
           </Form>

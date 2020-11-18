@@ -26,26 +26,25 @@ export default function Order() {
             <Card className="p-2 shadow-sm my-2 rounded">
               <Row>
                 <Col sm="3">
-                  <Image height="150" src={ cart.Product.image_url} width="100%" style={{ objectFit: "cover" }} />
+                  <Image height="170" src={ cart.Product.image_url} width="100%" style={{ objectFit: "cover" }} />
     
                 </Col>
                 
-                <Col sm="4">
-                  <p style={{ fontSize: "5 rem"}}><strong>User Name : {cart.user_name}</strong></p>
-                  <p>Address ({cart.user_address}) </p>
-                  <p>Phone ({cart.user_phone}) </p>
+                <Col sm="5" height="170" className="d-flex flex-column justify-content-center">
+                  <text className="text-muted">Username</text>
+                  <p style={{ fontSize: '20px' }}>{cart.user_name}</p>
+                  <small className="text-muted">Address</small>
+                  <p>{cart.user_address}</p>
+                  <small className="text-muted">Phone</small>
+                  <p className="mb-0">{cart.user_phone} </p>
                 </Col>
 
-                <Col sm="4">
-                  <p style={{ fontSize: "2 rem"}}><strong>Product name: {cart.Product.name}</strong></p>                  
-                  {/* <p>Price (Rp {cart.Product.price.toLocaleString("en-US").replaceAll(",", ".")}) </p> */}
-                  {/* {product.price.toLocaleString("en-US").replaceAll(",", ".")} */}
-                  <p>Total: { cart.quantity } x Rp {cart.Product.price.toLocaleString("en-US").replaceAll(",", ".")}  = Rp {(cart.quantity * cart.Product.price).toLocaleString("en-US").replaceAll(",", ".")} </p>
-                </Col>
-    
-                <Col sm="1">
-                  <div className="d-flex flex-column align-items-end justify-content-between" style={{ height: "150px"}}>
-                  </div>
+                <Col sm="4" height="170">
+                  <small className="text-muted">Product Name</small>
+                  <p>{cart.Product.name}</p>
+                  <p>Total: { cart.quantity } x Rp {cart.Product.price.toLocaleString("en-US").replaceAll(",", ".")} <h5 className="mb-0">
+                  Rp {(cart.quantity * cart.Product.price).toLocaleString("en-US").replaceAll(",", ".")}
+                    </h5> </p>
                 </Col>
     
               </Row>
