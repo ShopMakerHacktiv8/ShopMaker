@@ -31,14 +31,20 @@ export default function Order() {
                 </Col>
                 
                 <Col sm="4">
-                  <p style={{ fontSize: "5 rem"}}><strong>User Name : {cart.user_name}</strong></p>
-                  <p>Address ({cart.user_address}) </p>
-                  <p>Phone ({cart.user_phone}) </p>
+                  <text className="text-muted">Username</text>
+                  <h4 className="mt-auto">{cart.user_name}</h4>
+                  <small className="text-muted">Address</small>
+                  <p>{cart.user_address}</p>
+                  <small className="text-muted">Phone</small>
+                  <p>{cart.user_phone} </p>
                 </Col>
 
                 <Col sm="4">
-                  <p style={{ fontSize: "2 rem"}}><strong>Product name: {cart.Product.name}</strong></p>
-                  <p>Total: { cart.quantity } x Rp {cart.Product.price.toLocaleString("en-US").replaceAll(",", ".")}  = Rp {(cart.quantity * cart.Product.price).toLocaleString("en-US").replaceAll(",", ".")} </p>
+                  <small className="text-muted">Product Name</small>
+                  <p>{cart.Product.name}</p>
+                  <p>Total: { cart.quantity } x Rp {cart.Product.price.toLocaleString("en-US").replaceAll(",", ".")} <h5>
+                  Rp {(cart.quantity * cart.Product.price).toLocaleString("en-US").replaceAll(",", ".")}
+                    </h5> </p>
                 </Col>
     
                 <Col sm="1">

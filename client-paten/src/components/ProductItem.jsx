@@ -37,7 +37,7 @@ export default function ProductItem({ product }) {
             </Col>
             
             <Col sm="7">
-              <p style={{ fontSize: "2 rem", fontWeight: 'bold' }}>{product.name}</p>
+              <h5 style={{ fontWeight: 'bold' }}>{product.name}</h5>
               <p className="bg-secondary">Rp. {product.price.toLocaleString("en-US").replaceAll(",", ".")}</p> 
               <p>In stock ({product.stock} items)</p>
             </Col>
